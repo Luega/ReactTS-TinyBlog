@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
 import BlogContext from "../context/blog-context";
 import Post from "./Post";
 
@@ -17,13 +18,18 @@ const Section = ({ title }: Props) => {
   };
 
   return (
-    <section className="blog__section">
-      <header className="section__header">
-        <h2 className="text-4xl font-bold">{title}</h2>
-        <button onClick={visibilityHandler}>Read</button>
+    <section className="blog__section my-8">
+      <header className="section__header mb-6 flex items-center">
+        <h2 className="capitalize text-3xl font-bold me-3">{title}</h2>
+        <button onClick={visibilityHandler}>
+          <HiChevronDown className={`${visible ? "hidden" : "block"}`} />
+          <HiChevronUp className={`${visible ? "block" : "hidden"}`} />
+        </button>
       </header>
       <div
-        className={`section__articlesContainer ${visible ? "block" : "hidden"}`}
+        className={`section__articlesContainer grid gap-4 grid-cols-1 grid-rows-1 lg:grid-cols-3 lg:grid-rows-3 ${
+          visible ? "block" : "hidden"
+        }`}
       >
         {sectionPosts.map((post) => (
           <Post key={post.id} post={post} />
