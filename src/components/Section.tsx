@@ -9,7 +9,7 @@ type Props = {
 
 const Section = ({ title }: Props) => {
   const { posts } = useContext(BlogContext);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   const sectionPosts = posts.filter((post) => post.tags.includes(`${title}`));
 
@@ -18,23 +18,29 @@ const Section = ({ title }: Props) => {
   };
 
   return (
-    <section className="blog__section my-8">
-      <header className="section__header mb-6 flex items-center">
+    <section className="blog__section my-4">
+      <header
+        className={`section__header pb-2 flex items-center ${
+          !visible && "border-b"
+        }`}
+      >
         <h2 className="capitalize text-3xl font-bold me-3">{title}</h2>
         <button onClick={visibilityHandler}>
           <HiChevronDown className={`${visible ? "hidden" : "block"}`} />
           <HiChevronUp className={`${visible ? "block" : "hidden"}`} />
         </button>
       </header>
-      <div
-        className={`section__articlesContainer grid gap-4 grid-cols-1 grid-rows-1 lg:grid-cols-3 lg:grid-rows-3 ${
+      <ul
+        className={`section__articlesContainer grid gap-4 grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ${
           visible ? "block" : "hidden"
         }`}
       >
         {sectionPosts.map((post) => (
-          <Post key={post.id} post={post} />
+          <li key={post.id}>
+            <Post post={post} />
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 };
