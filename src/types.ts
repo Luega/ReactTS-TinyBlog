@@ -6,3 +6,9 @@ export type PostT = {
   tags: string[];
   reactions: number;
 };
+
+export type UserT = {
+  userId: number;
+  image: string;
+  username: string;
+};
