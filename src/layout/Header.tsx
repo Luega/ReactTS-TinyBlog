@@ -15,12 +15,15 @@ const Header = () => {
     <header className="blog__header mb-4 pb-4 text-center border shadow-sm">
       <h1 className="p-8 text-5xl md:text-6xl lg:text-7xl">Daily News</h1>
 
-      <button className="text-3xl md:hidden" onClick={dropdownHandler}>
+      <button
+        className="header__dropdown text-3xl md:hidden"
+        onClick={dropdownHandler}
+      >
         <HiOutlineBars3 />
       </button>
 
       <nav
-        className={`mb-4 flex flex-col ${
+        className={`header__nav mb-4 flex flex-col ${
           dropdown ? "block" : "hidden"
         } md:block`}
       >
@@ -28,7 +31,7 @@ const Header = () => {
           return (
             <a
               key={uuidv4()}
-              className="p-4 uppercase font-semibold"
+              className="nav__link p-4 uppercase font-semibold hover:md:border-b hover:md:border-black"
               onClick={dropdownHandler}
               href={`#${title}`}
             >
