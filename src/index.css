@@ -9,3 +9,7 @@
   --primaryTextColor: black;
   --secondaryTextColor: white;
 }
+
+html {
+  scroll-behavior: smooth;
+}

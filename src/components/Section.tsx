@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
-import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
+import { HiChevronDown, HiChevronUp, HiChevronDoubleUp } from "react-icons/hi2";
 import BlogContext from "../context/blog-context";
 import Post from "./Post";
+import { v4 as uuidv4 } from "uuid";
 
 type Props = {
   title: string;
@@ -18,7 +19,7 @@ const Section = ({ title }: Props) => {
   };
 
   return (
-    <section className="blog__section my-4">
+    <section id={title} className="blog__section pt-6 relative">
       <header
         className={`section__header pb-2 flex items-center ${
           !visible && "border-b"
@@ -26,8 +27,8 @@ const Section = ({ title }: Props) => {
       >
         <h2 className="capitalize text-3xl font-bold me-3">{title}</h2>
         <button onClick={visibilityHandler}>
-          <HiChevronDown className={`${visible ? "hidden" : "block"}`} />
-          <HiChevronUp className={`${visible ? "block" : "hidden"}`} />
+          <HiChevronDown className={visible ? "hidden" : "block"} />
+          <HiChevronUp className={visible ? "block" : "hidden"} />
         </button>
       </header>
       <ul
@@ -36,11 +37,16 @@ const Section = ({ title }: Props) => {
         }`}
       >
         {sectionPosts.map((post) => (
-          <li key={post.id}>
+          <li key={uuidv4()}>
             <Post post={post} />
           </li>
         ))}
       </ul>
+      <button>
+        <a href="#" className="absolute top-5 right-0">
+          <HiChevronDoubleUp />
+        </a>
+      </button>
     </section>
   );
 };

@@ -1,10 +1,16 @@
 import "./App.css";
+import { BlogContextProvider } from "./context/blog-context";
 import Blog from "./components/Blog";
+import Layout from "./layout/Layout";
 
 function App() {
   return (
     <>
-      <Blog />
+      <BlogContextProvider>
+        <Layout>
+          <Blog />
+        </Layout>
+      </BlogContextProvider>
     </>
   );
 }
