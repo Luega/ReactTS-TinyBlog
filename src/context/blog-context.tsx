@@ -47,7 +47,7 @@ export const BlogContextProvider = (props: PropsWithChildren) => {
       }
 
       let userIdArray: number[] = [];
-      posts.map((post) => {
+      posts.forEach((post) => {
         !userIdArray.includes(post.userId) && userIdArray.push(post.userId);
       });
 

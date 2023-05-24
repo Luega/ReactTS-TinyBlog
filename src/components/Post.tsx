@@ -25,7 +25,7 @@ const Post = ({ post, user }: Props) => {
     <article className="section__article h-full p-6 text-start border rounded-lg shadow-lg relative">
       <div className="article__user flex items-center">
         <div className="user__image w-15 me-4 border rounded-full overflow-hidden">
-          <img src={user?.image} alt={`${user?.username} image`} />
+          <img src={user?.image} alt={`${user?.username}`} />
         </div>
         <h4 className="user__name italic">{user?.username}</h4>
       </div>

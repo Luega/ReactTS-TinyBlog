@@ -48,7 +48,7 @@ const Section = ({ title }: Props) => {
         ))}
       </ul>
       <button>
-        <a href="#" className="absolute top-5 right-0 text-2xl">
+        <a href="#root" className="absolute top-5 right-0 text-2xl">
           <HiChevronDoubleUp />
         </a>
       </button>

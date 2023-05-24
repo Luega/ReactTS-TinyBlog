@@ -17,7 +17,12 @@ const Footer = () => {
         <h4 className="mb-4 text-center">Daily News</h4>
         <ul className="flex justify-center">
           <li>
-            <a className="p-2" href="https://github.com/Luega" target="_blank">
+            <a
+              className="p-2"
+              href="https://github.com/Luega"
+              target="_blank"
+              rel="noreferrer"
+            >
               <AiOutlineGithub className="text- inline me-2" />
             </a>
           </li>
@@ -26,6 +31,7 @@ const Footer = () => {
               className="p-2"
               href="https://linkedin.com/in/martinelliluca"
               target="_blank"
+              rel="noreferrer"
             >
               <AiOutlineLinkedin className="inline me-2" />
             </a>
@@ -35,6 +41,7 @@ const Footer = () => {
               className="p-2"
               href="mailto:lucamartinelli.developer@gmail.com"
               target="_blank"
+              rel="noreferrer"
             >
               <AiOutlineMail className="inline me-2" />
             </a>
@@ -60,7 +67,10 @@ const Footer = () => {
         </nav>
       </div>
       <button>
-        <a href="#" className="absolute top-5 right-10 lg:right-20 text-3xl">
+        <a
+          href="#root"
+          className="absolute top-5 right-10 lg:right-20 text-3xl"
+        >
           <HiChevronDoubleUp />
         </a>
       </button>
