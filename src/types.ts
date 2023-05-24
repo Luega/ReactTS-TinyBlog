@@ -5,6 +5,7 @@ export type PostT = {
   userId: number;
   tags: string[];
   reactions: number;
+  image?: string;
 };
 
 export type UserT = {

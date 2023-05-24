@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { HiChevronLeft, HiChevronRight, HiStop } from "react-icons/hi2";
 import BlogContext from "../context/blog-context";
 import Post from "./Post";
 import { v4 as uuidv4 } from "uuid";
 
 const Carousel = () => {
-  const { posts } = useContext(BlogContext);
+  const { posts, users } = useContext(BlogContext);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const popularPosts = posts.sort((postA, postB) => {
@@ -24,13 +24,13 @@ const Carousel = () => {
   };
 
   return (
-    <div className="carousel flex flex-col justify-center overflow-hidden">
+    <div className="carousel p-1 md:p-6 flex flex-col justify-center overflow-hidden">
       <div className="carousel__buttons my-4 flex justify-evenly text-2xl">
         <button onClick={() => updateIndex(activeIndex - 1)}>
           <HiChevronLeft />
         </button>
         <div className="indicators flex justify-around items-center">
-          {popularPosts.map((post, index) => {
+          {popularPosts.map((_post, index) => {
             return (
               index < 5 && (
                 <button
@@ -63,7 +63,10 @@ const Carousel = () => {
                 items-center"
               >
                 <div className="w-3/4 lg:w-1/2 whitespace-normal">
-                  <Post post={post} />
+                  <Post
+                    post={post}
+                    user={users.find((user) => user.userId === post.userId)}
+                  />
                 </div>
               </div>
             )

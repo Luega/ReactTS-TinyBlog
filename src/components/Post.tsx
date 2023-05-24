@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { PostT } from "../types";
+import { PostT, UserT } from "../types";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
 
 type Props = {
   post: PostT;
+  user?: UserT;
 };
 
-const Post = ({ post }: Props) => {
+const Post = ({ post, user }: Props) => {
   const [reaction, setReaction] = useState<number>(post.reactions);
 
   const favouriteHandler = () => {
@@ -23,18 +24,13 @@ const Post = ({ post }: Props) => {
   return (
     <article className="section__article h-full p-6 text-start border rounded-lg shadow-lg relative">
       <div className="article__user flex items-center">
-        <div className="user__image w-10 me-2 rounded-full overflow-hidden">
-          <img
-            src="https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png"
-            alt={`${post.userId} - Luca Martinelli`}
-          />
+        <div className="user__image w-15 me-4 border rounded-full overflow-hidden">
+          <img src={user?.image} alt={`${user?.username} image`} />
         </div>
-        <h4 className="user__name text-sm italic">
-          {post.userId} - Luca Martinelli
-        </h4>
+        <h4 className="user__name italic">{user?.username}</h4>
       </div>
-      <div className="article__image w-2/3 mx-auto my-6 rounded overflow-hidden">
-        <img src="https://picsum.photos/600/400" alt={post.title} />
+      <div className="article__image w-2/3 h-1/4 mx-auto my-6 rounded overflow-hidden">
+        <img src={post.image} alt={post.title} className="m-auto rounded" />
       </div>
       <h3 className="article__title mb-2 text-2xl font-bold">{post.title}</h3>
       <p className="article__body mb-4">{post.body}</p>

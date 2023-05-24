@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Section = ({ title }: Props) => {
-  const { posts } = useContext(BlogContext);
+  const { posts, users } = useContext(BlogContext);
   const [visible, setVisible] = useState(true);
 
   const sectionPosts = posts.filter((post) => post.tags.includes(`${title}`));
@@ -34,13 +34,16 @@ const Section = ({ title }: Props) => {
         </button>
       </header>
       <ul
-        className={`section__articlesContainer grid gap-4 grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ${
+        className={`section__articlesContainer grid gap-4 grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${
           visible ? "block" : "hidden"
         }`}
       >
-        {sectionPosts.map((post) => (
+        {sectionPosts.map((post, index) => (
           <li key={uuidv4()}>
-            <Post post={post} />
+            <Post
+              post={post}
+              user={users.find((user) => user.userId === post.userId)}
+            />
           </li>
         ))}
       </ul>

@@ -5,98 +5,104 @@ import { db } from "../DB/db";
 type BlogContext = {
   posts: PostT[];
   sectionTitles: string[];
+  users: UserT[];
 };
 
 const BlogContext = React.createContext<BlogContext>({
   posts: [],
   sectionTitles: [],
+  users: [],
 });
 
 export const BlogContextProvider = (props: PropsWithChildren) => {
-  // const [state, setState] = useState<BlogContext>({ posts: [] });
-  const posts: PostT[] = db.posts;
-
-  // TAGS
-  const tagsArrays: string[][] = posts.map((post) => {
-    return post.tags;
+  const [state, setState] = useState<BlogContext>({
+    posts: [],
+    sectionTitles: [],
+    users: [],
   });
 
-  let sectionTitles: string[] = [];
-  tagsArrays.forEach((array) => {
-    array.forEach((tag) => {
-      !sectionTitles.includes(tag) && sectionTitles.push(tag);
-    });
-  });
+  useEffect(() => {
+    const getData = async () => {
+      // AWAIT FETCH POST
+      const posts: PostT[] = db.posts;
+      // const posts: PostT[] = await fetch("https://dummyjson.com/posts")
+      //   .then((data) => data.json())
+      //   .then((results) => results.posts)
+      //   .catch((error) => console.log(error));
 
-  let randomTitles: string[] = [];
-  while (randomTitles.length !== 5) {
-    const title =
-      sectionTitles[Math.floor(Math.random() * sectionTitles.length)];
+      // TAGS
+      const tagArrays: string[][] = posts.map((post) => {
+        return post.tags;
+      });
 
-    !randomTitles.includes(title) && randomTitles.push(title);
-  }
+      let sectionTitles: string[] = [];
+      tagArrays.forEach((array) => {
+        array.forEach((tag) => {
+          !sectionTitles.includes(tag) && sectionTitles.push(tag);
+        });
+      });
 
-  // USER
-  let userIdArray: number[] = [];
-  posts.map((post) => {
-    !userIdArray.includes(post.userId) && userIdArray.push(post.userId);
-  });
+      let displayedTitles: string[] = [];
+      while (displayedTitles.length !== 5) {
+        const title =
+          sectionTitles[Math.floor(Math.random() * sectionTitles.length)];
 
-  const getUsers = async () => {
-    const data = await fetch(
-      `https://randomuser.me/api/?results=${userIdArray.length}`
-    )
-      .then((response) => response.json())
-      .then((data) => data.results)
-      .then((results) => results)
-      .catch((err) => console.log(err));
+        !displayedTitles.includes(title) && displayedTitles.push(title);
+      }
 
-    const users: UserT = data.map((user: any, index: number) => {
-      return {
-        userId: userIdArray[index],
-        image: user.picture.thumbnail,
-        username: user.login.username,
-      };
-    });
+      // USERID ARRAY
+      let userIdArray: number[] = [];
+      posts.map((post) => {
+        !userIdArray.includes(post.userId) && userIdArray.push(post.userId);
+      });
 
-    console.log(users);
-    return users;
-  };
-
-  getUsers();
-
-  // IMAGE
-  const getImages = async () => {
-    let images: string[] = [];
-
-    for (let i = 0; i < userIdArray.length; i++) {
-      await fetch("https://picsum.photos/600/200?grayscale")
-        .then((response) => images.push(response.url))
+      // AWAIT FETCH USER
+      const users: UserT[] = await fetch(
+        `https://randomuser.me/api/?results=${userIdArray.length}`
+      )
+        .then((response) => response.json())
+        .then((data) => data.results)
+        .then((results) =>
+          results.map((user: any, index: number) => {
+            return {
+              userId: userIdArray[index],
+              image: user.picture.thumbnail,
+              username: user.login.username,
+            };
+          })
+        )
         .catch((err) => console.log(err));
-    }
 
-    console.log(images);
-    return images;
-  };
+      // AWAIT FETCH IMAGE
+      await fetch(`https://picsum.photos/v2/list?page=3&limit=${posts.length}`)
+        .then((response) => response.json())
+        .then((data) =>
+          data.map(
+            (image: any, index: number) =>
+              (posts[index] = { ...posts[index], image: image.download_url })
+          )
+        )
+        .catch((err) => console.log(err));
 
-  getImages();
+      setState((prevState) => {
+        return {
+          ...prevState,
+          posts: posts,
+          sectionTitles: displayedTitles,
+          users: users,
+        };
+      });
+    };
 
-  // const users: UserT =
-
-  // useEffect(() => {
-  //   fetch("https://dummyjson.com/posts")
-  //     .then((data) => data.json())
-  //     .then((results) => setState(results))
-  //     .catch((error) => console.log(error));
-
-  //   return () => {};
-  // }, []);
+    getData();
+  }, []);
 
   return (
     <BlogContext.Provider
       value={{
-        posts: posts,
-        sectionTitles: randomTitles,
+        posts: state.posts,
+        sectionTitles: state.sectionTitles,
+        users: state.users,
       }}
     >
       {props.children}
