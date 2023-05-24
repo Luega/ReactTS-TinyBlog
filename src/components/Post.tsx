@@ -29,8 +29,12 @@ const Post = ({ post, user }: Props) => {
         </div>
         <h4 className="user__name italic">{user?.username}</h4>
       </div>
-      <div className="article__image w-2/3 h-1/4 mx-auto my-6 rounded overflow-hidden">
-        <img src={post.image} alt={post.title} className="m-auto rounded" />
+      <div className="article__image mx-auto my-6 rounded overflow-hidden">
+        <img
+          src={post.image}
+          alt={post.title}
+          className="m-auto h-[300px] object-cover rounded"
+        />
       </div>
       <h3 className="article__title mb-2 text-2xl font-bold">{post.title}</h3>
       <p className="article__body mb-4">{post.body}</p>

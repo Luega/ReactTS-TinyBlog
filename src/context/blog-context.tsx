@@ -23,14 +23,11 @@ export const BlogContextProvider = (props: PropsWithChildren) => {
 
   useEffect(() => {
     const getData = async () => {
-      // AWAIT FETCH POST
-      const posts: PostT[] = db.posts;
-      // const posts: PostT[] = await fetch("https://dummyjson.com/posts")
-      //   .then((data) => data.json())
-      //   .then((results) => results.posts)
-      //   .catch((error) => console.log(error));
+      const posts: PostT[] = await fetch("https://dummyjson.com/posts")
+        .then((data) => data.json())
+        .then((results) => results.posts)
+        .catch((error) => console.log(error));
 
-      // TAGS
       const tagArrays: string[][] = posts.map((post) => {
         return post.tags;
       });
@@ -50,13 +47,11 @@ export const BlogContextProvider = (props: PropsWithChildren) => {
         !displayedTitles.includes(title) && displayedTitles.push(title);
       }
 
-      // USERID ARRAY
       let userIdArray: number[] = [];
       posts.map((post) => {
         !userIdArray.includes(post.userId) && userIdArray.push(post.userId);
       });
 
-      // AWAIT FETCH USER
       const users: UserT[] = await fetch(
         `https://randomuser.me/api/?results=${userIdArray.length}`
       )
@@ -73,8 +68,7 @@ export const BlogContextProvider = (props: PropsWithChildren) => {
         )
         .catch((err) => console.log(err));
 
-      // AWAIT FETCH IMAGE
-      await fetch(`https://picsum.photos/v2/list?page=3&limit=${posts.length}`)
+      await fetch(`https://picsum.photos/v2/list?page=13&limit=${posts.length}`)
         .then((response) => response.json())
         .then((data) =>
           data.map(
