@@ -1,21 +1,20 @@
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import { PostT, UserT } from "../types";
-import { db } from "../DB/db";
 
-type BlogContext = {
+type BlogContextT = {
   posts: PostT[];
   sectionTitles: string[];
   users: UserT[];
 };
 
-const BlogContext = React.createContext<BlogContext>({
+const BlogContext = React.createContext<BlogContextT>({
   posts: [],
   sectionTitles: [],
   users: [],
 });
 
 export const BlogContextProvider = (props: PropsWithChildren) => {
-  const [state, setState] = useState<BlogContext>({
+  const [state, setState] = useState<BlogContextT>({
     posts: [],
     sectionTitles: [],
     users: [],
