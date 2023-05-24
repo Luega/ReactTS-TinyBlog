@@ -25,8 +25,10 @@ const Section = ({ title }: Props) => {
           !visible && "border-b"
         }`}
       >
-        <h2 className="capitalize text-3xl font-bold me-3">{title}</h2>
-        <button onClick={visibilityHandler}>
+        <h2 className="section__title capitalize text-3xl font-bold me-3">
+          {title}
+        </h2>
+        <button onClick={visibilityHandler} className="text-2xl">
           <HiChevronDown className={visible ? "hidden" : "block"} />
           <HiChevronUp className={visible ? "block" : "hidden"} />
         </button>
@@ -43,7 +45,7 @@ const Section = ({ title }: Props) => {
         ))}
       </ul>
       <button>
-        <a href="#" className="absolute top-5 right-0">
+        <a href="#" className="absolute top-5 right-0 text-2xl">
           <HiChevronDoubleUp />
         </a>
       </button>

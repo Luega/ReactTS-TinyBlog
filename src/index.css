@@ -2,14 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap");
+
 :root {
-  --primaryColor: red;
-  --secondaryColor: orange;
-  --alertColor: black;
-  --primaryTextColor: black;
-  --secondaryTextColor: white;
+  --primaryColor: #f7f7f7;
+  --secondaryColor: #ffffff;
+  /* --alertColor: #37c490; */
+  --alertColor: #61481c;
+  --alertColorHover: #d5cea3;
+  --primaryTextColor: #212529;
+  --secondaryTextColor: #a0a0a0;
 }
 
 html {
+  font-family: "Assistant", sans-serif;
   scroll-behavior: smooth;
+  cursor: default;
+}
+
+main {
+  background-color: var(--primaryColor);
+}
+
+.blog__header,
+.blog__footer,
+.section__article {
+  background-color: var(--secondaryColor);
+}
+
+.header__title,
+.section__title,
+.article__title,
+footer h4 {
+  font-family: "Cardo", serif;
+}
+
+.article__user,
+.article__reactions,
+.article__tags {
+  color: var(--alertColor);
+}
+
+a,
+button {
+  color: var(--alertColor);
+}
+
+a:hover,
+a:focus,
+a:active,
+button:hover,
+button:focus,
+button:active {
+  color: var(--alertColorHover);
 }

@@ -33,13 +33,13 @@ const Post = ({ post }: Props) => {
           {post.userId} - Luca Martinelli
         </h4>
       </div>
-      <div className="article__image w-2/3 mx-auto my-3 rounded overflow-hidden">
+      <div className="article__image w-2/3 mx-auto my-6 rounded overflow-hidden">
         <img src="https://picsum.photos/600/400" alt={post.title} />
       </div>
-      <h3 className="article__title mb-2 text-xl font-bold">{post.title}</h3>
+      <h3 className="article__title mb-2 text-2xl font-bold">{post.title}</h3>
       <p className="article__body mb-4">{post.body}</p>
       <div className="article__reactions absolute bottom-2 left-4">
-        <span>{reaction}</span>
+        <span className="italic">{reaction}</span>
         <AiOutlineHeart
           className={`ms-2 cursor-pointer ${
             reaction === post.reactions ? "inline" : "hidden"

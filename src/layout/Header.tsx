@@ -12,9 +12,10 @@ const Header = () => {
   };
 
   return (
-    <header className="blog__header mb-4 pb-4 text-center border shadow-sm">
-      <h1 className="p-8 text-5xl md:text-6xl lg:text-7xl">Daily News</h1>
-
+    <header className="blog__header pb-4 text-center border-b shadow relative">
+      <h1 className="header__title p-8 text-5xl md:text-6xl lg:text-7xl">
+        Daily News
+      </h1>
       <button
         className="header__dropdown text-3xl md:hidden"
         onClick={dropdownHandler}

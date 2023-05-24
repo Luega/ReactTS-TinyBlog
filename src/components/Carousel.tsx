@@ -25,7 +25,7 @@ const Carousel = () => {
 
   return (
     <div className="carousel flex flex-col justify-center overflow-hidden">
-      <div className="carousel__buttons my-4 flex justify-evenly">
+      <div className="carousel__buttons my-4 flex justify-evenly text-2xl">
         <button onClick={() => updateIndex(activeIndex - 1)}>
           <HiChevronLeft />
         </button>
@@ -33,7 +33,11 @@ const Carousel = () => {
           {popularPosts.map((post, index) => {
             return (
               index < 5 && (
-                <button key={uuidv4()} onClick={() => updateIndex(index)}>
+                <button
+                  className="text-xl"
+                  key={uuidv4()}
+                  onClick={() => updateIndex(index)}
+                >
                   <HiStop />
                 </button>
               )

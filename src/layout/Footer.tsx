@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import BlogContext from "../context/blog-context";
 import { v4 as uuidv4 } from "uuid";
+import { HiChevronDoubleUp } from "react-icons/hi2";
 import {
   AiOutlineMail,
   AiOutlineLinkedin,
@@ -11,7 +12,7 @@ const Footer = () => {
   const { sectionTitles } = useContext(BlogContext);
 
   return (
-    <footer className="blog__footer w-full mt-5 py-10 flex items-center justify-center border-t shadow-2xl">
+    <footer className="blog__footer w-full py-10 flex items-center justify-center relative border-t shadow-2xl">
       <div className="footer__social w-full md:w-1/3 lg:w-2/6 flex flex-col text-2xl md:text-3xl lg:text-4xl">
         <h4 className="mb-4 text-center">Daily News</h4>
         <ul className="flex justify-center">
@@ -40,16 +41,16 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <div className="footer__nav w-2/3 lg:w-2/6 hidden lg:flex lg:flex-col">
-        <h4 className="text-center font-semibold uppercase lg:text-xl">
-          Sections:
+      <div className="footer__nav w-2/3 lg:w-2/6 hidden lg:block">
+        <h4 className="text-center font-semibold capitalize lg:text-xl">
+          sections:
         </h4>
         <nav className="flex justify-around items-center lg:justify-center">
           {sectionTitles.map((title) => {
             return (
               <a
                 key={uuidv4()}
-                className="p-4 capitalize font-semibold hover:border-b hover:border-black"
+                className="nav__link p-4 capitalize font-semibold"
                 href={`#${title}`}
               >
                 {title}
@@ -58,6 +59,11 @@ const Footer = () => {
           })}
         </nav>
       </div>
+      <button>
+        <a href="#" className="absolute top-5 right-10 lg:right-20 text-3xl">
+          <HiChevronDoubleUp />
+        </a>
+      </button>
     </footer>
   );
 };

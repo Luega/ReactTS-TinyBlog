@@ -9,7 +9,7 @@ const Blog = () => {
 
   return (
     <>
-      <main className="blog text-center">
+      <main className="blog py-4 text-center">
         <Carousel />
 
         <ul className="blog__sectionsContainer w-4/5 m-auto">
