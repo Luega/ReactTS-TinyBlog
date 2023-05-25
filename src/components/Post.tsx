@@ -31,7 +31,7 @@ const Post = ({ post, user }: Props) => {
       </div>
       <div className="article__image mx-auto my-6 rounded overflow-hidden">
         <img
-          src={post.image}
+          src={post.image ? post.image : `https://picsum.photos/600/400`}
           alt={post.title}
           className="m-auto h-[300px] object-cover rounded"
         />

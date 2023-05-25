@@ -10,6 +10,11 @@ const Header = () => {
   const dropdownHandler = () => {
     setDropdown(!dropdown);
   };
+  const blurHandler = () => {
+    setTimeout(() => {
+      setDropdown(!dropdown);
+    }, 100);
+  };
 
   return (
     <header className="blog__header pb-4 text-center border-b shadow relative">
@@ -19,6 +24,7 @@ const Header = () => {
       <button
         className="header__dropdown text-3xl md:hidden"
         onClick={dropdownHandler}
+        onBlur={blurHandler}
       >
         <HiOutlineBars3 />
       </button>

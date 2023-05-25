@@ -1,6 +1,6 @@
 # The Tiny Blog
 
-Welcome to "The Tiny Blog", a full responsive blogging application built with React! This project aims to provide an elegant and cozy user interface for a simple blog, where users can read posts fetched from three different APIs. The project utilizes React hooks like useState, useEffect, and useContext using a custom wrapper provider component. Styling and responsiveness is done using Tailwind CSS.
+Welcome to "The Tiny Blog", a full responsive blogging application built with React! This project aims to provide an elegant and cozy user interface for a simple blog, where users can read posts fetched from an external APIs. The project utilizes React hooks like useState, useEffect, and useContext using a custom wrapper provider component. Styling and responsiveness is done using Tailwind CSS.
 
 [Take a look](https://tiny-daily-news.netlify.app/)
 
@@ -19,7 +19,6 @@ Welcome to "The Tiny Blog", a full responsive blogging application built with Re
 ## Features
 
 - Fetches blog posts from an API to display on the UI.
-- Retrieves random images for each blog post from a separate API to enhance visual appeal.
 - Fetches user information from another API to add author details to each post's userId.
 - Utilizes React hooks (useState, useEffect, useContext) for managing state and side effects.
 - Implements context using a custom wrapper provider component for data sharing.

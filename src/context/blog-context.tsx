@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import { PostT, UserT } from "../types";
+import { imagesArray } from "./images-array";
 
 type BlogContextT = {
   posts: PostT[];
@@ -26,6 +27,8 @@ export const BlogContextProvider = (props: PropsWithChildren) => {
         .then((data) => data.json())
         .then((results) => results.posts)
         .catch((error) => console.log(error));
+
+      posts.forEach((post, index) => (post.image = imagesArray[index]));
 
       const tagArrays: string[][] = posts.map((post) => {
         return post.tags;
@@ -64,16 +67,6 @@ export const BlogContextProvider = (props: PropsWithChildren) => {
               username: user.login.username,
             };
           })
-        )
-        .catch((err) => console.log(err));
-
-      await fetch(`https://picsum.photos/v2/list?page=13&limit=${posts.length}`)
-        .then((response) => response.json())
-        .then((data) =>
-          data.map(
-            (image: any, index: number) =>
-              (posts[index] = { ...posts[index], image: image.download_url })
-          )
         )
         .catch((err) => console.log(err));
 
